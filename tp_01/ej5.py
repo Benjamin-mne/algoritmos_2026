@@ -62,7 +62,7 @@ class Converter:
         return True
 
     @staticmethod
-    def roman_to_decimal(roman: str, index: int = 0) -> int:
+    def __roman_to_decimal(roman: str, index: int = 0) -> int:
         table = Converter.conversion_table
 
         if index >= len(roman):
@@ -76,9 +76,13 @@ class Converter:
         next_val = table[roman[index + 1]]["value"]
 
         if current < next_val:
-            return (next_val - current) + Converter.roman_to_decimal(roman, index + 2)
+            return (next_val - current) + Converter.__roman_to_decimal(roman, index + 2)
         else:
-            return current + Converter.roman_to_decimal(roman, index + 1)
+            return current + Converter.__roman_to_decimal(roman, index + 1)
+
+    @staticmethod
+    def roman_to_decimal(roman: str) -> int:
+        return Converter.__roman_to_decimal(roman, 0)
 
 
 parser = argparse.ArgumentParser(description="Roman Number")
