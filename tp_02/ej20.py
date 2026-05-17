@@ -4,9 +4,14 @@
 # que genere la secuencia de movimientos necesarios para hacer volver al robot a su lugar de
 # partida, retornando por el mismo camino que fue.
 
+import sys
+from pathlib import Path
+
+ROOT_DIR = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT_DIR))
+
 from enum import Enum, auto
 from common.Stack import Stack
-
 
 class Direction(Enum):
     NORTH = auto()
